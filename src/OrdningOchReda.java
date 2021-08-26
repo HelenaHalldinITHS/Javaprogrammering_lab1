@@ -6,11 +6,8 @@ public class OrdningOchReda {
     public static void playGame() {
         System.out.println("Välkommen till spelet \"Ordning och reda\"! ");
         int[] result = getInput();
-        Arrays.sort(result);
-        int sum = sumOfSecondGreatestAndSecondLeast(result);
+        endMessage(result);
 
-        System.out.println("Summan av det näst största respektive näst minsta talet är: " + sum);
-        System.out.println(" ");
     }
 
     //Get input
@@ -21,13 +18,12 @@ public class OrdningOchReda {
         return changeFormOfInput(input);
     }
 
-    //Change form of input
+    //Change form of input from string to int[]
     private static int[] changeFormOfInput(String input) {
         int[] result = new int[5]; //5 numbers is only valid amount.
         StringBuilder tempString = new StringBuilder();
         char temp;
         int j = 0;
-        input.trim(); //sting always ends with a number
 
         for (int i = 0; i < input.length(); i++) {
             temp = input.charAt(i);
@@ -48,8 +44,32 @@ public class OrdningOchReda {
         return result;
     }
 
-    
     private static int sumOfSecondGreatestAndSecondLeast(int[] results) {
+        Arrays.sort(results);
         return (results[1] + results[results.length - 1]);
+    }
+
+    private static boolean isArraySorted(int[] array){
+        int[] originalArray = array.clone(); //original array
+        Arrays.sort(array); //array is now sorted
+
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] != originalArray[i])
+                return false;
+        }
+        return true;
+    }
+
+    private static void endMessage(int[] numbers ){
+        boolean isSorted = isArraySorted(numbers); //also sorts array
+        int sum = sumOfSecondGreatestAndSecondLeast(numbers);
+
+        System.out.println("Min value: " + numbers[0]);
+        System.out.println("2Min value: " + numbers[1]);
+        System.out.println("2Max value: " + numbers[numbers.length-2]);
+        System.out.println("Max value: " + numbers[numbers.length-1]);
+        System.out.println("I ordning: " + isSorted);
+        System.out.println("Summa: " + sum );
+        System.out.println(" ");
     }
 }
