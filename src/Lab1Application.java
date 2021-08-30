@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Main {
+public class Lab1Application {
 
     public static void main(String[] args) {
 
@@ -33,10 +33,7 @@ public class Main {
 
     //kollar om applikationen ska fortsätta eller inte.
     private static boolean continueApplication(String choice) {
-        if (choice.equals("e"))
-            return false;
-        else
-            return true;
+        return !choice.equals("e");
     }
 
     //Determines witch action is going to be made depending on the choice made.

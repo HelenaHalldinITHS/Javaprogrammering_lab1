@@ -51,11 +51,12 @@ public class OrdningOchReda {
     }
 
     private static boolean isArraySorted(int[] array){
-        int[] originalArray = array.clone(); //original array
-        Arrays.sort(array); //array is now sorted
+
+        int[] sortedArray = Arrays.copyOf(array, array.length);
+        Arrays.sort(sortedArray);
 
         for (int i = 0; i < array.length; i++) {
-            if (array[i] != originalArray[i])
+            if (array[i] != sortedArray[i])
                 return false;
         }
         return true;
