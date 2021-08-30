@@ -42,10 +42,10 @@ public class Main {
     //Determines witch action is going to be made depending on the choice made.
     private static void runChoice(String choice) {
         switch (choice) {
-            case "1" -> UppOchNer.playGame();
-            case "2" -> MinMax.playGame();
-            case "3" -> StenSaxPase.playGame();
-            case "4" -> OrdningOchReda.playGame();
+            case "1" -> UppOchNer.run();
+            case "2" -> MinMax.run();
+            case "3" -> StenSaxPase.run();
+            case "4" -> OrdningOchReda.run();
         }
     }
 

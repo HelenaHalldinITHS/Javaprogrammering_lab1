@@ -9,7 +9,7 @@ public class StenSaxPase {
         PÅSE
     }
 
-    public static void playGame() {
+    public static void run() {
 
         int playersScore = 0;
         int computersScore = 0;

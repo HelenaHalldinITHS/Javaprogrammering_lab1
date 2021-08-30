@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class UppOchNer {
 
-    public static void playGame() {
+    public static void run() {
         System.out.println("Välkommen till spelet \"Upp och Ner\"! ");
 
         String[] words = getInput();

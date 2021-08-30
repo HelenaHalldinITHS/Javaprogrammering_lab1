@@ -3,8 +3,9 @@ import java.util.Scanner;
 
 public class OrdningOchReda {
 
-    public static void playGame() {
+    public static void run() {
         System.out.println("Välkommen till spelet \"Ordning och reda\"! ");
+
         int[] result = getInput();
         endMessage(result);
 
