@@ -41,9 +41,9 @@ public class UppOchNer {
 
     //Skriv ut resultatet från spelet.
     private static void printUppAndDown() {
-        for (int i = 0; i < words.length; i++) {
-            if (!words[9 - i].isEmpty())
-                System.out.println(words[9 - i]);
+        for (int i = words.length - 1; i >= 0; i--) {
+            if (!words[i].isEmpty())
+                System.out.println(words[i]);
         }
         System.out.println(); //Avsluta med en tom rad.
     }
