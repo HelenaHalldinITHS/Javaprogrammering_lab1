@@ -2,8 +2,8 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class StenSaxPase {
-    static Scanner scanner = new Scanner(System.in);
-    static Random random = new Random();
+    private static Scanner scanner = new Scanner(System.in);
+    private static Random random = new Random();
     
     private static int playersScore = 0;
     private static int computersScore = 0;
@@ -11,7 +11,7 @@ public class StenSaxPase {
     private static move computersChoice;
     private final static int ROUNDS_TO_WINN = 3;
 
-    enum move {
+    private enum move {
         STEN,
         SAX,
         PASE
@@ -27,6 +27,7 @@ public class StenSaxPase {
             printScore();
         }
         printWinnerMessage();
+        clearScore();
     }
 
     private static boolean gameIsNotOver() {
@@ -42,7 +43,8 @@ public class StenSaxPase {
     }
     
     private static void getPlayersChoice() {
-        playersChoice = getChoiceFromInt(Integer.parseInt(scanner.nextLine()));
+        int choice = Integer.parseInt(scanner.nextLine());
+        playersChoice = getChoiceFromInt(choice);
     }
 
     private static void getComputersChoice() {
@@ -96,6 +98,12 @@ public class StenSaxPase {
         if (computersScore == ROUNDS_TO_WINN) {
             System.out.println("Datorn vann!");
         }
+        System.out.println();
+    }
+
+    private static void clearScore(){
+        playersScore = 0;
+        computersScore = 0;
     }
 
 
