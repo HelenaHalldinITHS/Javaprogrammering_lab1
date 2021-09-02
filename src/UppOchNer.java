@@ -7,25 +7,29 @@ public class UppOchNer {
     static String[] words = new String[maxNumberOfWords];
 
     public static void run() {
-        System.out.println("Välkommen till spelet \"Upp och Ner\"! ");
-
+        printWelcomeMessage();
+        resetArray();
         getWordsFromUser();
         printUppAndDown();
-        System.out.println(); //Avsluta med en tom rad.
-
     }
 
-    //Get all words from the user, put in String[] and return it
-    private static void getWordsFromUser() {
-        Arrays.fill(words, "");
+    private static void printWelcomeMessage() {
+        System.out.println("Välkommen till spelet \"Upp och Ner\"! ");
+    }
 
+    //Get all words from the user
+    private static void getWordsFromUser() {
         for (int i = 0; i < words.length; i++) {
             String tempString = getInput();
             if (tempString.equals("END"))
                 break;
             words[i] = tempString;
         }
+    }
 
+    //Empty the array (if first time playing, it initializes the array instead)
+    private static void resetArray() {
+        Arrays.fill(words, ""); //initialize / make empty
     }
 
     //Get each input from the user
@@ -41,5 +45,6 @@ public class UppOchNer {
             if (!words[9 - i].isEmpty())
                 System.out.println(words[9 - i]);
         }
+        System.out.println(); //Avsluta med en tom rad.
     }
 }
