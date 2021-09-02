@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Lab1Application {
+public class Meny {
 
     public static void main(String[] args) {
 

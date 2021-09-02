@@ -2,9 +2,9 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class UppOchNer {
-    static Scanner scanner = new Scanner(System.in);
-    static final int MAX_NUMBER_OF_WORDS = 10;
-    static String[] words = new String[MAX_NUMBER_OF_WORDS];
+    private static Scanner scanner = new Scanner(System.in);
+    private static final int MAX_NUMBER_OF_WORDS = 10;
+    private static String[] words = new String[MAX_NUMBER_OF_WORDS];
 
     public static void run() {
         printWelcomeMessage();
@@ -37,7 +37,6 @@ public class UppOchNer {
         System.out.println("Skriv ett ord(Avsluta med \"END\", max antal ord är " + MAX_NUMBER_OF_WORDS + "): ");
         return scanner.nextLine();
     }
-
 
     //Skriv ut resultatet från spelet.
     private static void printUppAndDown() {

@@ -1,77 +1,84 @@
 import java.util.Arrays;
 import java.util.Scanner;
+import static java.lang.Integer.*;
 
 public class OrdningOchReda {
+    private static Scanner scanner = new Scanner(System.in);
+    private static String inputAsString;
+    private static int[] input = new int[5];
+    private static int[] sortedInput;
 
     public static void run() {
+        printWelcomeMessage();
+        getInput();
+        getInputInSortedForm();
+        printEndMessage();
+    }
+
+    private static void printWelcomeMessage() {
         System.out.println("Välkommen till spelet \"Ordning och reda\"! ");
-
-        int[] result = getInput();
-        endMessage(result);
-
     }
 
-    //Get input
-    private static int[] getInput() {
-        Scanner scanner = new Scanner(System.in);
+    private static void getInput() {
         System.out.println("Skriv 5 tal, separerade med mellanslag: ");
-        String input = scanner.nextLine();
-        return changeFormOfInput(input);
+        inputAsString = scanner.nextLine();
+        changeFormOfInput();
     }
 
-    //Change form of input from string to int[]
-    private static int[] changeFormOfInput(String input) {
-        int[] result = new int[5]; //5 numbers is only valid amount.
+    private static void changeFormOfInput() {
         StringBuilder tempString = new StringBuilder();
         char temp;
-        int j = 0;
+        int counter = 0;
 
-        for (int i = 0; i < input.length(); i++) {
-            temp = input.charAt(i);
-
-            if (temp != ' ') {
+        for (int i = 0; i < inputAsString.length(); i++) {
+            temp = inputAsString.charAt(i);
+            if (temp == ' ') {
+                flushData(tempString, counter++);
+                emptyEntireString(tempString);
+            } else
                 tempString.append(temp);
-            } else {
-                result[j] = Integer.parseInt(tempString.toString());
-                tempString = new StringBuilder(); //nollställ
-                j++;
-            }
-
-            if (i==(input.length()-1)){ //last round we want to "flush" all data in tempString.
-                result[j]=Integer.parseInt(tempString.toString());
+            if (isLastRound(i)) {
+                flushData(tempString, counter);
             }
         }
-
-        return result;
     }
 
-    private static int sumOfSecondGreatestAndSecondLeast(int[] results) {
-        Arrays.sort(results);
-        return (results[1] + results[results.length - 1]);
+    private static void emptyEntireString(StringBuilder tempString) {
+        tempString.delete(0, tempString.length()); //nollställ
     }
 
-    private static boolean isArraySorted(int[] array){
+    private static void flushData(StringBuilder tempString, int counter) {
+        input[counter] = parseInt(tempString.toString());
+    }
 
-        int[] sortedArray = Arrays.copyOf(array, array.length);
-        Arrays.sort(sortedArray);
+    private static boolean isLastRound(int i) {
+        return i == (inputAsString.length() - 1);
+    }
 
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] != sortedArray[i])
+    private static int sumOfSecondGreatestAndSecondLeast() {
+        return (sortedInput[1] + sortedInput[sortedInput.length - 1]);
+    }
+
+    private static boolean isInputSorted() {
+        for (int i = 0; i < input.length; i++) {
+            if (input[i] != sortedInput[i])
                 return false;
         }
         return true;
     }
 
-    private static void endMessage(int[] numbers ){
-        boolean isSorted = isArraySorted(numbers); //also sorts array
-        int sum = sumOfSecondGreatestAndSecondLeast(numbers);
+    private static void getInputInSortedForm() {
+        sortedInput = Arrays.copyOf(input, input.length);
+        Arrays.sort(sortedInput);
+    }
 
-        System.out.println("Min value: " + numbers[0]);
-        System.out.println("2Min value: " + numbers[1]);
-        System.out.println("2Max value: " + numbers[numbers.length-2]);
-        System.out.println("Max value: " + numbers[numbers.length-1]);
-        System.out.println("I ordning: " + isSorted);
-        System.out.println("Summa: " + sum );
-        System.out.println(" ");
+    private static void printEndMessage() {
+        System.out.println("Min value: " + sortedInput[0]);
+        System.out.println("2Min value: " + sortedInput[1]);
+        System.out.println("2Max value: " + sortedInput[sortedInput.length - 2]);
+        System.out.println("Max value: " + sortedInput[sortedInput.length - 1]);
+        System.out.println("I ordning: " + isInputSorted());
+        System.out.println("Summa: " + sumOfSecondGreatestAndSecondLeast());
+        System.out.println();
     }
 }

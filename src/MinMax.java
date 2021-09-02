@@ -1,16 +1,15 @@
 import java.util.Scanner;
 
 public class MinMax {
-    static Scanner scanner = new Scanner(System.in);
-    static int max = 0;
-    static int min = 0;
-    static final int AMOUNT_OF_NUMBERS = 5;
+    private static Scanner scanner = new Scanner(System.in);
+    private static int max;
+    private static int min;
+    private static final int AMOUNT_OF_NUMBERS = 5;
 
     public static void run() {
         printWelcomeMessage();
         findMinAndMax();
         printResult();
-
     }
 
     private static void printWelcomeMessage() {
