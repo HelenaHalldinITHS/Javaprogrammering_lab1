@@ -3,8 +3,8 @@ import java.util.Scanner;
 
 public class UppOchNer {
     static Scanner scanner = new Scanner(System.in);
-    static final int maxNumberOfWords = 10;
-    static String[] words = new String[maxNumberOfWords];
+    static final int MAX_NUMBER_OF_WORDS = 10;
+    static String[] words = new String[MAX_NUMBER_OF_WORDS];
 
     public static void run() {
         printWelcomeMessage();
@@ -34,7 +34,7 @@ public class UppOchNer {
 
     //Get each input from the user
     private static String getInput() {
-        System.out.println("Skriv ett ord(Avsluta med \"END\", max antal ord är " + maxNumberOfWords + "): ");
+        System.out.println("Skriv ett ord(Avsluta med \"END\", max antal ord är " + MAX_NUMBER_OF_WORDS + "): ");
         return scanner.nextLine();
     }
 
