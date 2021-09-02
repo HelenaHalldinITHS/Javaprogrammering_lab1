@@ -1,17 +1,16 @@
 import java.util.Scanner;
 
 public class MinMax {
+    static Scanner scanner = new Scanner(System.in);
+
     public static void run() {
         System.out.println("Välkommen till spelet \"Min Max\"! ");
-
         int[] result = getInput();
         printResult(result[0], result[1]);
 
     }
 
     private static int[] getInput() {
-        Scanner scanner = new Scanner(System.in);
-
         int max = 0; //This value will be overwritten in the first loop bellow.
         int min = 0; //This value will be overwritten in the first loop bellow.
         int temp;

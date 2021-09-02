@@ -5,14 +5,10 @@ public class UppOchNer {
     static Scanner scanner = new Scanner(System.in);
 
     public static void run() {
-        printWelcomeMessage();
+        System.out.println("Välkommen till spelet \"Upp och Ner\"! ");
 
         String[] words = getInput();
         printUppAndDown(words);
-    }
-
-    private static void printWelcomeMessage(){
-        System.out.println("Välkommen till spelet \"Upp och Ner\"! ");
     }
 
     private static String[] getInput(){
@@ -34,7 +30,10 @@ public class UppOchNer {
     //Initialisera en array med tomma strängar.
     private static String[] initializeEmptyString(int maxNumberOfWords) {
         String[] words = new String[maxNumberOfWords];
-        Arrays.fill(words, ""); //inizialize array words with empty strings.
+
+        for (int i = 0; i <words.length; i++)
+            words[i] = "";
+
         return words;
     }
 
