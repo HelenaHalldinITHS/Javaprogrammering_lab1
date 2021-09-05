@@ -2,14 +2,15 @@ import java.util.Scanner;
 
 public class MinMax {
     private static Scanner scanner = new Scanner(System.in);
-    private static int max;
-    private static int min;
+    private static int max = Integer.MIN_VALUE;
+    private static int min = Integer.MAX_VALUE;
     private static final int AMOUNT_OF_NUMBERS = 5;
 
     public static void run() {
         printWelcomeMessage();
         findMinAndMax();
         printResult();
+        resetMinAndMax();
     }
 
     private static void printWelcomeMessage() {
@@ -20,17 +21,14 @@ public class MinMax {
         System.out.println("Skriv 5 tal, tryck enter mellan varje tal: ");
 
         for (int i = 0; i < AMOUNT_OF_NUMBERS; i++) {
-            updateMaxAndMin(getInput(), i);
+            updateMaxAndMin(getInput());
         }
     }
 
-    private static void updateMaxAndMin(int temp, int i) {
-        if (i == 0) {
-            min = temp;
+    private static void updateMaxAndMin(int temp) {
+        if (temp > max)
             max = temp;
-        } else if (temp > max)
-            max = temp;
-        else if (temp < min)
+        if (temp < min)
             min = temp;
     }
 
@@ -43,4 +41,8 @@ public class MinMax {
         System.out.println();
     }
 
+    private static void resetMinAndMax() {
+        max = Integer.MIN_VALUE;
+        min = Integer.MAX_VALUE;
+    }
 }

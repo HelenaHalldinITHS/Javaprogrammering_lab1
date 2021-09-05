@@ -44,14 +44,14 @@ public class StenSaxPase {
     
     private static void getPlayersChoice() {
         int choice = Integer.parseInt(scanner.nextLine());
-        playersChoice = getChoiceFromInt(choice);
+        playersChoice = getMoveFromChoice(choice);
     }
 
     private static void getComputersChoice() {
-        computersChoice = getChoiceFromInt(random.nextInt(3) + 1);
+        computersChoice = getMoveFromChoice(random.nextInt(3) + 1);
     }
 
-    private static move getChoiceFromInt(int choice) {
+    private static move getMoveFromChoice(int choice) {
         return switch (choice) {
             case 1 -> move.STEN;
             case 2 -> move.SAX;
