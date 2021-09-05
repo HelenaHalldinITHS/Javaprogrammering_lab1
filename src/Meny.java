@@ -3,7 +3,6 @@ import java.util.Scanner;
 public class Meny {
 
     public static void main(String[] args) {
-
         while (true) {
             printMenu();
             String choice = selectChoice();

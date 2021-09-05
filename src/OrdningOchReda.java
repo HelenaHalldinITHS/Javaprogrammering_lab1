@@ -4,59 +4,60 @@ import static java.lang.Integer.*;
 
 public class OrdningOchReda {
     private static Scanner scanner = new Scanner(System.in);
-    private static String inputAsString;
-    private static int[] input = new int[5];
+    private static final int AMOUNT_OF_NUMBERS = 5;
+    private static int[] input = new int[AMOUNT_OF_NUMBERS];
     private static int[] sortedInput;
 
     public static void run() {
         printWelcomeMessage();
         getInput();
-        getInputInSortedForm();
-        printEndMessage();
+        printResult();
     }
-
+    
     private static void printWelcomeMessage() {
         System.out.println("Välkommen till spelet \"Ordning och reda\"! ");
     }
 
     private static void getInput() {
         System.out.println("Skriv 5 tal, separerade med mellanslag: ");
-        inputAsString = scanner.nextLine();
-        changeFormOfInput();
+        String inputAsString = scanner.nextLine();
+        changeFormOfInput(inputAsString);
     }
 
-    private static void changeFormOfInput() {
-        StringBuilder tempString = new StringBuilder();
-        char temp;
-        int counter = 0;
+    private static void changeFormOfInput(String inputAsString) {
+        String[] inputAsStringArray = splitStringAtSpace(inputAsString);
+        input = getIntArrayFromStringArray(inputAsStringArray);
+    }
 
-        for (int i = 0; i < inputAsString.length(); i++) {
-            temp = inputAsString.charAt(i);
-            if (temp == ' ') {
-                flushData(tempString, counter++);
-                emptyEntireString(tempString);
-            } else
-                tempString.append(temp);
-            if (isLastRound(i)) {
-                flushData(tempString, counter);
-            }
+    private static String[] splitStringAtSpace(String inputAsString) {
+        return inputAsString.split(" ");
+
+    }
+
+    private static int[] getIntArrayFromStringArray(String[] stringArray) {
+        int[] intArray = new int[stringArray.length];
+
+        for (int i = 0; i < stringArray.length; i++) {
+            intArray[i] = parseInt(stringArray[i]);
         }
+        return intArray;
     }
 
-    private static void emptyEntireString(StringBuilder tempString) {
-        tempString.delete(0, tempString.length()); //nollställ
+    private static void printResult() {
+        getInputInSortedForm();
+
+        System.out.println("Min value: " + sortedInput[0]);
+        System.out.println("2Min value: " + sortedInput[1]);
+        System.out.println("2Max value: " + sortedInput[sortedInput.length - 2]);
+        System.out.println("Max value: " + sortedInput[sortedInput.length - 1]);
+        System.out.println("I ordning: " + isInputSorted());
+        System.out.println("Summa: " + sumOfSecondGreatestAndSecondLeast(sortedInput));
+        System.out.println();
     }
 
-    private static void flushData(StringBuilder tempString, int counter) {
-        input[counter] = parseInt(tempString.toString());
-    }
-
-    private static boolean isLastRound(int i) {
-        return i == (inputAsString.length() - 1);
-    }
-
-    private static int sumOfSecondGreatestAndSecondLeast() {
-        return (sortedInput[1] + sortedInput[sortedInput.length - 1]);
+    private static void getInputInSortedForm() {
+        sortedInput = Arrays.copyOf(input, input.length);
+        Arrays.sort(sortedInput);
     }
 
     private static boolean isInputSorted() {
@@ -67,18 +68,7 @@ public class OrdningOchReda {
         return true;
     }
 
-    private static void getInputInSortedForm() {
-        sortedInput = Arrays.copyOf(input, input.length);
-        Arrays.sort(sortedInput);
-    }
-
-    private static void printEndMessage() {
-        System.out.println("Min value: " + sortedInput[0]);
-        System.out.println("2Min value: " + sortedInput[1]);
-        System.out.println("2Max value: " + sortedInput[sortedInput.length - 2]);
-        System.out.println("Max value: " + sortedInput[sortedInput.length - 1]);
-        System.out.println("I ordning: " + isInputSorted());
-        System.out.println("Summa: " + sumOfSecondGreatestAndSecondLeast());
-        System.out.println();
+    private static int sumOfSecondGreatestAndSecondLeast(int[] sortedArray) {
+        return (sortedArray[1] + sortedArray[sortedArray.length - 2]);
     }
 }
