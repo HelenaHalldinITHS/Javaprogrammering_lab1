@@ -1,6 +1,5 @@
 import java.util.Scanner;
 
-//test
 public class Meny {
 
     public static void main(String[] args) {
