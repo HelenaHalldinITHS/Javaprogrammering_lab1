@@ -6,6 +6,7 @@ public class UppOchNer {
     private static final int MAX_NUMBER_OF_WORDS = 10;
     private static String[] words = new String[MAX_NUMBER_OF_WORDS];
 
+    //Styr körning av applikationen. Klassens enda metod som kan anropas utifrån.
     public static void run() {
         printWelcomeMessage();
         resetArray();
@@ -13,11 +14,19 @@ public class UppOchNer {
         printUppAndDown();
     }
 
+    //Skriver ut välkomstmeddelande
     private static void printWelcomeMessage() {
         System.out.println("Välkommen till spelet \"Upp och Ner\"! ");
     }
 
-    //Get all words from the user
+    //Initierar den array som ska sparar de ord som användaren anger.
+    //(Om det inte är första gången applikationen körs töms tidigare sparade ord)
+    private static void resetArray() {
+        Arrays.fill(words, ""); //initialize / make empty
+    }
+
+
+    //Hämtar ord från användaren och sparar dessa
     private static void getWordsFromUser() {
         for (int i = 0; i < words.length; i++) {
             String tempString = getInput();
@@ -27,23 +36,23 @@ public class UppOchNer {
         }
     }
 
-    //Empty the array (if first time playing, it initializes the array instead)
-    private static void resetArray() {
-        Arrays.fill(words, ""); //initialize / make empty
-    }
-
-    //Get each input from the user
+    //Hämtar input från användaren
     private static String getInput() {
         System.out.println("Skriv ett ord(Avsluta med \"END\", max antal ord är " + MAX_NUMBER_OF_WORDS + "): ");
         return scanner.nextLine();
     }
 
-    //Skriv ut resultatet från spelet.
+    //Skriv ut resultatet för applikationen
     private static void printUppAndDown() {
         for (int i = words.length - 1; i >= 0; i--) {
-            if (!words[i].isEmpty())
-                System.out.println(words[i]);
+            printIfNotEmptyString(words[i]);
         }
-        System.out.println(); //Avsluta med en tom rad.
+        System.out.println();
+    }
+
+    //Skriver ut strängen om den inte är tom
+    private static void printIfNotEmptyString(String word) {
+        if (!word.isEmpty())
+            System.out.println(word);
     }
 }

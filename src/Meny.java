@@ -30,12 +30,12 @@ public class Meny {
         return scanner.nextLine().toLowerCase();
     }
 
-    //kollar om applikationen ska fortsätta eller inte.
+    //Kollar om applikationen ska fortsätta eller inte.
     private static boolean continueApplication(String choice) {
         return !choice.equals("e");
     }
 
-    //Determines witch action is going to be made depending on the choice made.
+    //Kör den valda applikationen
     private static void runChoice(String choice) {
         switch (choice) {
             case "1" -> UppOchNer.run();
