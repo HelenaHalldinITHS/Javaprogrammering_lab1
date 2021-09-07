@@ -25,7 +25,6 @@ public class UppOchNer {
         Arrays.fill(words, ""); //initialize / make empty
     }
 
-
     //Hämtar ord från användaren och sparar dessa
     private static void getWordsFromUser() {
         for (int i = 0; i < words.length; i++) {
